@@ -24,7 +24,7 @@ export default function Home() {
           Learn Next.js
         </a>
         <Link href="/info-manager">
-        <button>"Go to info Manager"</button>
+          <button>Go to Info Manager</button>
         </Link>
         
       </main>
