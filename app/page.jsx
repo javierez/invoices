@@ -8,11 +8,23 @@ export default function Home() {
       <main className="text-center flex flex-col items-center">
         <h1 className="text-6xl font-bold mb-8">Facturas Automáticas</h1>
         <p className="text-xl mb-12">Bienvenida a la aplicación para enviar facturas de forma automática</p>
-        <Link href="/info-manager">
-          <Button className="mt-8">
-            Accede
-          </Button>
-        </Link>
+        <div className="flex flex-col space-y-4 items-center">
+          <Link href="/info-manager-Beatriz">
+            <Button className="w-96">
+              Facturas Beatriz
+            </Button>
+          </Link>
+          <Link href="#">
+            <Button className="w-96" disabled>
+              Facturas Compartidas Gastos
+            </Button>
+          </Link>
+          <Link href="#">
+            <Button className="w-96" disabled>
+              Facturas Compartidas Sin Gastos
+            </Button>
+          </Link>
+        </div>
       </main>
     </div>
   );

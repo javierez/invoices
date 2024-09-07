@@ -9,7 +9,5 @@ export async function getExcelData() {
   const sheetName = workbook.SheetNames[0];
   const sheet = workbook.Sheets[sheetName];
   const data = XLSX.utils.sheet_to_json(sheet);
-  console.log('Excel data:', JSON.stringify(data, null, 2));
-
   return data;
 }
