@@ -1,6 +1,6 @@
 import React from "react";
 import { getExcelData } from "../lib/data";
-import DataTable from "../ui/DataTable";
+import DataTable from "../ui/datatable";  // Changed from DataTable to datatable
 import Link from "next/link";
 import Button from "../ui/button";
 import { PDFGenerator } from "../ui/PDFGeneratorButton";
