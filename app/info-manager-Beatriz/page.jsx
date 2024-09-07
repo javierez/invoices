@@ -20,7 +20,7 @@ export default async function InfoManager() {
               Volver al Menú
             </Button>
           </Link>
-          <Link href="/info-manager-Beatriz/send-invoices-Beatriz">
+          <Link href="#">
             <Button className="w-88 bg-forest text-offwhite border border-forest hover:bg-brown hover:text-offwhite">
               Generar Facturas
             </Button>
