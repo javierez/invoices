@@ -3,10 +3,12 @@ import { getExcelData } from "../lib/data";
 import DataTable from "../ui/DataTable";
 import Link from "next/link";
 import Button from "../ui/button";
+import { PDFGenerator } from "../ui/PDFGeneratorButton";
 
 export default async function InfoManager() {
   const excelData = await getExcelData();
-  console.log('Excel data in InfoManager:', JSON.stringify(excelData, null, 2));
+  // console.log('Excel data in InfoManager:', JSON.stringify(excelData, null, 2));
+
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-cream text-brown">
       <main className="text-center w-full max-w-6xl">
@@ -20,11 +22,7 @@ export default async function InfoManager() {
               Volver al Menú
             </Button>
           </Link>
-          <Link href="#">
-            <Button className="w-88 bg-forest text-offwhite border border-forest hover:bg-brown hover:text-offwhite">
-              Generar Facturas
-            </Button>
-          </Link>
+          <PDFGenerator />
         </div>
       </main>
     </div>
