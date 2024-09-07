@@ -1,6 +1,8 @@
 'use client'
 
 import React from 'react';
+import { renderToBuffer } from '@react-pdf/renderer';
+import InvoiceTemplate from '../components/InvoiceTemplate';
 import Button from './button';
 
 export function PDFGenerator() {
