@@ -19,8 +19,8 @@ export default function Home() {
               Facturas Compartidas Gastos
             </Button>
           </Link>
-          <Link href="#">
-            <Button className="w-96" disabled>
+          <Link href="/info-manager-Compartidas">
+            <Button className="w-96">
               Facturas Compartidas Sin Gastos
             </Button>
           </Link>
