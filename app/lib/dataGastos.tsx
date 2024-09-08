@@ -1,11 +1,9 @@
 import * as XLSX from 'xlsx';
-import path from 'path';
-import fs from 'fs';
 
 export async function getExcelDataGastos() {
-  const filePath = path.join(process.cwd(), 'public', 'data', "locales-Beatriz.xlsx");
-  const fileBuffer = fs.readFileSync(filePath);
-  const workbook = XLSX.read(fileBuffer, { type: 'buffer' });
+  const response = await fetch('/data/locales-Gastos.xlsx');
+  const arrayBuffer = await response.arrayBuffer();
+  const workbook = XLSX.read(new Uint8Array(arrayBuffer), { type: 'array' });
   const sheetName = workbook.SheetNames[0];
   const sheet = workbook.Sheets[sheetName];
   const data = XLSX.utils.sheet_to_json(sheet);

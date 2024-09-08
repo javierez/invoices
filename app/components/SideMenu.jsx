@@ -1,30 +1,25 @@
 import React from 'react';
 
-const SideMenu = ({ isQuarterStart, gastos, onGastosChange, data }) => {
+const SideMenu = ({ data, additionalExpenses, onExpenseChange}) => {
   return (
-    <div className="w-64 bg-sage p-4 text-offwhite">
-      <h2 className="text-xl font-bold mb-4">Gastos Adicionales</h2>
-      {isQuarterStart ? (
-        <p className="mb-4">Es inicio de trimestre. Por favor, ingrese los gastos de Luz y Basura.</p>
-      ) : (
-        <p className="mb-4">No es inicio de trimestre. Los gastos de Luz y Basura no se aplicarán este mes.</p>
-      )}
+    <div className="w-64 bg-sage p-4 text-offwhite ml-4 rounded-lg">
+      <h2 className="text-2xl font-bold mb-8 text-brown">Gastos Adicionales</h2>
       {data.map((row) => (
-        <div key={row.id} className="mb-4">
-          <h3 className="font-bold">{row.short_name}</h3>
+        <div key={row.nif} className="mb-6">
+          <h3 className="font-semibold text-sm mb-2">{row.name_arrendatario}</h3>
           <div className="flex flex-col space-y-2">
             <input
               type="number"
               placeholder="Luz"
-              value={gastos[row.id]?.luz || ''}
-              onChange={(e) => onGastosChange(row.id, 'luz', e.target.value)}
+              value={additionalExpenses[row.name_arrendatario]?.light || ''}
+              onChange={(e) => onExpenseChange(row.name_arrendatario, 'light', e.target.value)}
               className="p-2 text-brown rounded"
             />
             <input
               type="number"
               placeholder="Basura"
-              value={gastos[row.id]?.basura || ''}
-              onChange={(e) => onGastosChange(row.id, 'basura', e.target.value)}
+              value={additionalExpenses[row.name_arrendatario]?.trash || ''}
+              onChange={(e) => onExpenseChange(row.name_arrendatario, 'trash', e.target.value)}
               className="p-2 text-brown rounded"
             />
           </div>
