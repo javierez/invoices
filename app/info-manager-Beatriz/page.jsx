@@ -4,6 +4,7 @@ import DataTable from "../ui/datatable";  // Changed from DataTable to datatable
 import Link from "next/link";
 import Button from "../ui/button";
 import { PDFGenerator } from "../ui/PDFGeneratorButton";
+import { EmailSender } from "../ui/EmailSenderButton";
 
 export default async function InfoManager() {
   const excelData = await getExcelData();
@@ -23,6 +24,7 @@ export default async function InfoManager() {
             </Button>
           </Link>
           <PDFGenerator />
+          <EmailSender />
         </div>
       </main>
     </div>

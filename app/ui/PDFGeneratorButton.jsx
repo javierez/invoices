@@ -26,6 +26,10 @@ export function PDFGenerator() {
       
       const data = await response.json();
       if (data.pdfs) {
+        // Store PDFs in localStorage
+        localStorage.setItem('generatedPDFs', JSON.stringify(data.pdfs));
+        console.log('PDFs stored in localStorage'); // Add this line
+        
         data.pdfs.forEach(pdf => {
           const blob = new Blob([Uint8Array.from(atob(pdf.data), c => c.charCodeAt(0))], { type: 'application/pdf' });
           const url = URL.createObjectURL(blob);
