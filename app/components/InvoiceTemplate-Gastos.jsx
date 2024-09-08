@@ -29,7 +29,7 @@ const formatCurrency = (value) => {
   return `${value.toFixed(2)}€`;
 };
 
-const InvoiceTemplate = ({ data, additionalExpenses }) => (
+const InvoiceTemplateGastos = ({ data, additionalExpenses }) => (
   <Document>
     <Page size="A4" style={styles.page}>
       <View style={styles.table}>
@@ -119,4 +119,4 @@ const InvoiceTemplate = ({ data, additionalExpenses }) => (
   </Document>
 );
 
-export default InvoiceTemplate;
+export default InvoiceTemplateGastos;
