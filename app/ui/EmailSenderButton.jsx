@@ -1,13 +1,16 @@
 'use client'
 
-import React from 'react';
+import React, { useState } from 'react';
 import Button from './button';
+import ConfirmationDialog from '../components/ConfirmationDialog';
 
 export function EmailSender() {
+  const [showConfirmation, setShowConfirmation] = useState(false);
+
   const handleSendEmails = async () => {
     try {
       const storedPDFs = localStorage.getItem('generatedPDFs');
-      console.log('Stored PDFs:', storedPDFs); // Add this line
+      console.log('Stored PDFs:', storedPDFs);
       if (!storedPDFs) {
         throw new Error('No PDFs generated. Please generate PDFs first.');
       }
@@ -35,12 +38,30 @@ export function EmailSender() {
     }
   };
 
+  const handleConfirm = () => {
+    setShowConfirmation(false);
+    handleSendEmails();
+  };
+
+  const handleCancel = () => {
+    setShowConfirmation(false);
+  };
+
   return (
-    <Button 
-      className="w-88 bg-forest text-offwhite border border-forest hover:bg-brown hover:text-offwhite"
-      onClick={handleSendEmails}
-    >
-      Enviar Facturas por Email
-    </Button>
+    <>
+      <Button 
+        className="w-88 bg-forest text-offwhite border border-forest hover:bg-brown hover:text-offwhite"
+        onClick={() => setShowConfirmation(true)}
+      >
+        Enviar Facturas por Email
+      </Button>
+      {showConfirmation && (
+        <ConfirmationDialog
+          message="¿Está seguro de que desea enviar las facturas por email?"
+          onConfirm={handleConfirm}
+          onCancel={handleCancel}
+        />
+      )}
+    </>
   );
 }
