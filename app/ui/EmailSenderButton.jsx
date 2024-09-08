@@ -1,11 +1,12 @@
 'use client'
 
-import React, { useState } from 'react';
+import React from 'react';
 import Button from './button';
-import ConfirmationDialog from '../components/ConfirmationDialog';
+import { usePathname } from 'next/navigation';
 
 export function EmailSender() {
-  const [showConfirmation, setShowConfirmation] = useState(false);
+  const pathname = usePathname();
+  const page = pathname.split('/').pop();
 
   const handleSendEmails = async () => {
     try {
@@ -23,10 +24,14 @@ export function EmailSender() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ pdfs }),
+        body: JSON.stringify({ pdfs, page }),
       });
       
+      console.log('Response received:', response.status, response.statusText);
+
       if (!response.ok) {
+        const errorText = await response.text();
+        console.error('Error response body:', errorText);
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       
@@ -38,30 +43,12 @@ export function EmailSender() {
     }
   };
 
-  const handleConfirm = () => {
-    setShowConfirmation(false);
-    handleSendEmails();
-  };
-
-  const handleCancel = () => {
-    setShowConfirmation(false);
-  };
-
   return (
-    <>
-      <Button 
-        className="w-88 bg-forest text-offwhite border border-forest hover:bg-brown hover:text-offwhite"
-        onClick={() => setShowConfirmation(true)}
-      >
-        Enviar Facturas por Email
-      </Button>
-      {showConfirmation && (
-        <ConfirmationDialog
-          message="¿Está seguro de que desea enviar las facturas por email?"
-          onConfirm={handleConfirm}
-          onCancel={handleCancel}
-        />
-      )}
-    </>
+    <Button 
+      className="w-88 bg-forest text-offwhite border border-forest hover:bg-brown hover:text-offwhite"
+      onClick={handleSendEmails}
+    >
+      Enviar Facturas por Email
+    </Button>
   );
 }

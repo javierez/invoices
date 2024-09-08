@@ -4,8 +4,12 @@ import React from 'react';
 import { renderToBuffer } from '@react-pdf/renderer';
 import InvoiceTemplate from '../components/InvoiceTemplate';
 import Button from './button';
+import { usePathname } from 'next/navigation';
 
 export function PDFGenerator() {
+  const pathname = usePathname();
+  const page = pathname.split('/').pop();
+
   const handleGeneratePDFs = async () => {
     try {
       console.log('Sending request to /api/generate-pdfs');
@@ -14,6 +18,7 @@ export function PDFGenerator() {
         headers: {
           'Content-Type': 'application/json',
         },
+        body: JSON.stringify({ page }),
       });
       
       console.log('Response received:', response.status, response.statusText);

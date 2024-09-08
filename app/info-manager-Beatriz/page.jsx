@@ -7,8 +7,7 @@ import { PDFGenerator } from "../ui/PDFGeneratorButton";
 import { EmailSender } from "../ui/EmailSenderButton";
 
 export default async function InfoManager() {
-  const excelData = await getExcelData();
-  // console.log('Excel data in InfoManager:', JSON.stringify(excelData, null, 2));
+  const excelData = await getExcelData('info-manager-Beatriz');
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-cream text-brown">

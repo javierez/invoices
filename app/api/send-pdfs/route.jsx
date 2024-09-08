@@ -8,8 +8,13 @@ dotenv.config({ path: '.env.local' });
 export async function POST(request) {
   console.log('API route hit: POST /api/send-pdfs');
   try {
-    const { pdfs } = await request.json();
-    const excelData = await getExcelData();
+    const { pdfs, page } = await request.json();
+    
+    if (!page) {
+      throw new Error('Page information is missing');
+    }
+
+    const excelData = await getExcelData(page);
 
     // Configure nodemailer with your email service
     const transporter = nodemailer.createTransport({
