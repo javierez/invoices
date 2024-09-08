@@ -14,8 +14,8 @@ export default function Home() {
               Facturas Beatriz
             </Button>
           </Link>
-          <Link href="#">
-            <Button className="w-96" disabled>
+          <Link href="/info-manager-Gastos">
+            <Button className="w-96" >
               Facturas Compartidas Gastos
             </Button>
           </Link>

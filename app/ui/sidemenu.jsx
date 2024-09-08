@@ -1,10 +1,10 @@
 import React from 'react';
-import Button from '../ui/button';
+import Button from './button';
 
 const SideMenu = ({ data, additionalExpenses, onExpenseChange, onAccept }) => {
   return (
     <div className="w-64 bg-sage p-4 text-offwhite ml-4 rounded-lg">
-      <h2 className="text-3xl font-extrabold mb-8 text-brown uppercase tracking-wide relative">
+      <h2 className="text-xl font-extrabold mb-8 text-brown uppercase tracking-wide relative text-center">
         Gastos Adicionales
         <span className="absolute -bottom-2 left-0 w-full h-1 bg-brown"></span>
       </h2>

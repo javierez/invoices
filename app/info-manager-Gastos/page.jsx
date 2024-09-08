@@ -7,11 +7,12 @@ import Link from "next/link";
 import Button from "../ui/button";
 import { PDFGenerator } from "../ui/PDFGeneratorButton";
 import { EmailSender } from "../ui/EmailSenderButton";
-import SideMenu from "../components/SideMenu";
+import SideMenu from "../ui/sidemenu";
 
 export default function InfoManager() {
   const [excelData, setExcelData] = useState([]);
   const [additionalExpenses, setAdditionalExpenses] = useState({});
+  const [acceptedExpenses, setAcceptedExpenses] = useState({});
 
   useEffect(() => {
     async function fetchData() {
@@ -19,7 +20,7 @@ export default function InfoManager() {
       setExcelData(data);
       // Initialize additionalExpenses state
       const initialExpenses = data.reduce((acc, row) => {
-        acc[row.short_name] = { light: '', trash: '' };
+        acc[row.nif] = { light: '', trash: '' };
         return acc;
       }, {});
       setAdditionalExpenses(initialExpenses);
@@ -27,11 +28,17 @@ export default function InfoManager() {
     fetchData();
   }, []);
 
-  const handleExpenseChange = (shortName, type, value) => {
+  const handleExpenseChange = (nif, type, value) => {
     setAdditionalExpenses(prev => ({
       ...prev,
-      [shortName]: { ...prev[shortName], [type]: value }
+      [nif]: { ...prev[nif], [type]: value }
     }));
+  };
+
+  const handleAccept = () => {
+    setAcceptedExpenses(additionalExpenses);
+    alert('Additional expenses accepted!');
+    // You can add more logic here, like enabling the PDF generation
   };
 
   return (
@@ -45,7 +52,8 @@ export default function InfoManager() {
           <SideMenu 
             data={excelData} 
             additionalExpenses={additionalExpenses} 
-            onExpenseChange={handleExpenseChange} 
+            onExpenseChange={handleExpenseChange}
+            onAccept={handleAccept}
           />
         </div>
         <div className="mt-8 flex justify-center space-x-4">
@@ -54,7 +62,7 @@ export default function InfoManager() {
               Volver al Menú
             </Button>
           </Link>
-          <PDFGenerator />
+          <PDFGenerator acceptedExpenses={acceptedExpenses} />
           <EmailSender />
         </div>
       </main>

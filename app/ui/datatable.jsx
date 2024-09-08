@@ -6,7 +6,6 @@ const DataTable = ({ data }) => {
       <table className="w-full text-left table-auto">
         <thead className="bg-sage text-offwhite">
           <tr>
-            {/* Increased min-width for all columns */}
             <th className="py-4 px-6 min-w-[300px]">Name</th>
             <th className="py-4 px-6 min-w-[250px]">Arrendatario</th>
             <th className="py-4 px-6 min-w-[150px]">NIF</th>
@@ -20,7 +19,6 @@ const DataTable = ({ data }) => {
         <tbody className="text-brown">
           {data.map((row, index) => (
             <tr key={index} className="border-b border-sage hover:bg-sage/20 transition-colors duration-300">
-              {/* Increased padding to match header cells */}
               <td className="py-4 px-6">{row.short_name}</td>
               <td className="py-4 px-6">{row.name_arrendatario}</td>
               <td className="py-4 px-6">{row.nif}</td>
