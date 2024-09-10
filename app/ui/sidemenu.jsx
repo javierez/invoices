@@ -15,15 +15,15 @@ const SideMenu = ({ data, additionalExpenses, onExpenseChange, onAccept }) => {
             <input
               type="number"
               placeholder="Luz"
-              value={additionalExpenses[row.name_arrendatario]?.light || ''}
-              onChange={(e) => onExpenseChange(row.name_arrendatario, 'light', e.target.value)}
+              value={additionalExpenses[row.nif]?.light || ''}
+              onChange={(e) => onExpenseChange(row.nif, 'light', e.target.value)}
               className="p-2 text-brown rounded"
             />
             <input
               type="number"
               placeholder="Basura"
-              value={additionalExpenses[row.name_arrendatario]?.trash || ''}
-              onChange={(e) => onExpenseChange(row.name_arrendatario, 'trash', e.target.value)}
+              value={additionalExpenses[row.nif]?.trash || ''}
+              onChange={(e) => onExpenseChange(row.nif, 'trash', e.target.value)}
               className="p-2 text-brown rounded"
             />
           </div>

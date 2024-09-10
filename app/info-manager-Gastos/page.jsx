@@ -5,7 +5,7 @@ import { getExcelDataGastos } from "../lib/dataGastos";
 import DataTable from "../ui/datatable";
 import Link from "next/link";
 import Button from "../ui/button";
-import { PDFGenerator } from "../ui/PDFGeneratorButton";
+import { PDFGeneratorButtonGastos } from "../ui/PDFGeneratorButtonGastos";
 import { EmailSender } from "../ui/EmailSenderButton";
 import SideMenu from "../ui/sidemenu";
 
@@ -37,8 +37,8 @@ export default function InfoManager() {
 
   const handleAccept = () => {
     setAcceptedExpenses(additionalExpenses);
-    alert('Additional expenses accepted!');
-    // You can add more logic here, like enabling the PDF generation
+    console.log('Accepted expenses:', additionalExpenses);
+    alert('Additional expenses accepted! Check console for details.');
   };
 
   return (
@@ -62,7 +62,7 @@ export default function InfoManager() {
               Volver al Menú
             </Button>
           </Link>
-          <PDFGenerator acceptedExpenses={acceptedExpenses} />
+          <PDFGeneratorButtonGastos acceptedExpenses={acceptedExpenses} />
           <EmailSender />
         </div>
       </main>

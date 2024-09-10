@@ -26,7 +26,11 @@ const getCurrentDate = () => {
 };
 
 const formatCurrency = (value) => {
-  return `${value.toFixed(2)}€`;
+  if (typeof value !== 'number') {
+    console.warn(`Invalid value passed to formatCurrency: ${value}`);
+    return '0,00 €';
+  }
+  return value.toFixed(2).replace('.', ',') + ' €';
 };
 
 const InvoiceTemplateGastos = ({ data, additionalExpenses }) => (
