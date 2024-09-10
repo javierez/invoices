@@ -1,32 +1,46 @@
 import { getExcelData } from '../../lib/data';
 import { NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
-//import dotenv from 'dotenv';
+import dotenv from 'dotenv';
 
-//dotenv.config({ path: '.env.local' });
+dotenv.config({ path: '.env.local' });
 
 export async function POST(request) {
   console.log('API route hit: POST /api/send-pdfs');
   try {
-    const { pdfs } = await request.json();
-    const excelData = await getExcelData();
+    const { pdfs, page } = await request.json();
+    console.log('Received page:', page); // Add this line
+    
+    if (!page) {
+      throw new Error('Page information is missing');
+    }
+
+    const excelData = await getExcelData(page);
 
     // Configure nodemailer with your email service
     const transporter = nodemailer.createTransport({
       host: process.env.EMAIL_HOST,
       port: parseInt(process.env.EMAIL_PORT),
-      secure: process.env.EMAIL_PORT === '465',
+      secure: false, // Use TLS
       auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS
+      },
+      tls: {
+        // do not fail on invalid certs
+        rejectUnauthorized: false
       }
     });
+
+    // Verify SMTP connection
+    await transporter.verify();
+    console.log('SMTP connection verified');
 
     // Log the email configuration (without sensitive data)
     console.log('Email configuration:', {
       host: process.env.EMAIL_HOST,
       port: process.env.EMAIL_PORT,
-      secure: process.env.EMAIL_PORT === '465',
+      secure: false,
       user: process.env.EMAIL_USER,
       passProvided: !!process.env.EMAIL_PASS
     });
