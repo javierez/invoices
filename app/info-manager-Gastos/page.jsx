@@ -8,6 +8,7 @@ import Button from "../ui/button";
 import { PDFGeneratorButtonGastos } from "../ui/PDFGeneratorButtonGastos";
 import { EmailSender } from "../ui/EmailSenderButton";
 import SideMenu from "../ui/sidemenu";
+import { EmailSenderGastos } from "../ui/EmailSenderButtonGastos";
 
 export default function InfoManager() {
   const [excelData, setExcelData] = useState([]);
@@ -63,7 +64,7 @@ export default function InfoManager() {
             </Button>
           </Link>
           <PDFGeneratorButtonGastos acceptedExpenses={acceptedExpenses} />
-          <EmailSender />
+          <EmailSenderGastos />
         </div>
       </main>
     </div>
