@@ -48,7 +48,13 @@ const InvoiceTemplateGastos = ({ data, additionalExpenses }) => (
           </View>
           <View style={[styles.tableCol, styles.thirdWidth]}>
             <Text style={styles.tableCellTitle}>Total</Text>
-            <Text style={styles.tableCell}>{formatCurrency(data.total)}</Text>
+            <Text style={styles.tableCell}>
+              {formatCurrency(
+                (data.euros + additionalExpenses.light + additionalExpenses.trash) +
+                ((data.euros + additionalExpenses.light + additionalExpenses.trash) * 0.21) -
+                ((data.euros + additionalExpenses.light + additionalExpenses.trash) * 0.19)
+              )}
+            </Text>
           </View>
         </View>
         <View style={styles.tableRow}>
@@ -90,8 +96,8 @@ const InvoiceTemplateGastos = ({ data, additionalExpenses }) => (
           </View>
           <View style={[styles.tableCol, styles.halfWidth]}>
             <Text style={styles.tableCellTitle}>EUROS</Text>
-            <Text style={styles.tableCell}>{formatCurrency(data.irpf)}</Text>
-            <Text style={styles.tableCell}>{formatCurrency(data.iva)}</Text>
+            <Text style={styles.tableCell}>{formatCurrency((data.euros + additionalExpenses.light + additionalExpenses.trash) * 0.19)}</Text>
+            <Text style={styles.tableCell}>{formatCurrency((data.euros + additionalExpenses.light + additionalExpenses.trash) * 0.21)}</Text>
           </View>
         </View>
         <View style={styles.tableRow}>
@@ -108,7 +114,7 @@ const InvoiceTemplateGastos = ({ data, additionalExpenses }) => (
             <Text style={styles.tableCell}>D.N.I. {data.nif}</Text>
           </View>
           <View style={[styles.tableCol, styles.thirdWidth]}>
-            <Text style={styles.tableCellTitle}>PROPIETARIO:</Text>
+            <Text style={styles.tableCellTitle}>Propietario:</Text>
             <Text style={styles.tableCell}>Mª JESUS Y BEATRIZ GARCÍA CB</Text>
             <Text style={styles.tableCell}>C/ LOPE DE VEGA Nº 6</Text>
             <Text style={styles.tableCell}>24002 LEON</Text>

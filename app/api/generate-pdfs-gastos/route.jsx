@@ -31,11 +31,24 @@ export async function POST(request) {
 
 async function generatePDFsWithExpenses(data, acceptedExpenses) {
   console.log('Generating PDFs with data and expenses:', data.length, 'rows', Object.keys(acceptedExpenses).length, 'expenses');
+  console.log('Accepted expenses:', JSON.stringify(acceptedExpenses, null, 2));
+
   const currentMonth = new Date().getMonth() + 1; // Get month number (1-12)
   const pdfPromises = data.map(async (row) => {
     const expenses = acceptedExpenses[row.nif] || { light: 0, trash: 0 };
+    console.log(`Expenses for ${row.nif}:`, JSON.stringify(expenses, null, 2));
+
+    const additionalExpenses = {
+      light: Number(expenses.light) || 0,
+      trash: Number(expenses.trash) || 0
+    };
+    console.log(`Converted expenses for ${row.nif}:`, JSON.stringify(additionalExpenses, null, 2));
+
     const pdfBuffer = await renderToBuffer(
-      <InvoiceTemplateGastos data={row} additionalExpenses={expenses} />
+      <InvoiceTemplateGastos 
+        data={row} 
+        additionalExpenses={additionalExpenses} 
+      />
     );
     return {
       fileName: `FACTURA_${row.name_arrendatario}_${currentMonth.toString().padStart(2, '0')}.pdf`,
