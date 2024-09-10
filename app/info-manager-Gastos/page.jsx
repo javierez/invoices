@@ -6,7 +6,6 @@ import DataTable from "../ui/datatable";
 import Link from "next/link";
 import Button from "../ui/button";
 import { PDFGeneratorButtonGastos } from "../ui/PDFGeneratorButtonGastos";
-import { EmailSender } from "../ui/EmailSenderButton";
 import SideMenu from "../ui/sidemenu";
 import { EmailSenderGastos } from "../ui/EmailSenderButtonGastos";
 
@@ -17,14 +16,19 @@ export default function InfoManager() {
 
   useEffect(() => {
     async function fetchData() {
-      const data = await getExcelDataGastos();
-      setExcelData(data);
-      // Initialize additionalExpenses state
-      const initialExpenses = data.reduce((acc, row) => {
-        acc[row.nif] = { light: '', trash: '' };
-        return acc;
-      }, {});
-      setAdditionalExpenses(initialExpenses);
+      try {
+        const data = await getExcelDataGastos();
+        setExcelData(data);
+        // Initialize additionalExpenses state
+        const initialExpenses = data.reduce((acc, row) => {
+          acc[row.nif] = { light: '', trash: '' };
+          return acc;
+        }, {});
+        setAdditionalExpenses(initialExpenses);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        // Handle the error appropriately
+      }
     }
     fetchData();
   }, []);
