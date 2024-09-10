@@ -1,6 +1,4 @@
 import * as XLSX from 'xlsx';
-import path from 'path';
-import fs from 'fs';
 
 export async function getExcelData(page: string) {
   let fileName;
@@ -15,9 +13,9 @@ export async function getExcelData(page: string) {
       throw new Error('Invalid page specified');
   }
 
-  const filePath = path.join(process.cwd(), 'public', 'data', fileName);
-  const fileBuffer = fs.readFileSync(filePath);
-  const workbook = XLSX.read(fileBuffer, { type: 'buffer' });
+  const response = await fetch(`/data/${fileName}`);
+  const arrayBuffer = await response.arrayBuffer();
+  const workbook = XLSX.read(new Uint8Array(arrayBuffer), { type: 'array' });
   const sheetName = workbook.SheetNames[0];
   const sheet = workbook.Sheets[sheetName];
   const data = XLSX.utils.sheet_to_json(sheet);

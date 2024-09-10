@@ -1,9 +1,9 @@
 import { getExcelData } from '../../lib/data';
 import { NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
-import dotenv from 'dotenv';
+//import dotenv from 'dotenv';
 
-dotenv.config({ path: '.env.local' });
+//dotenv.config({ path: '.env.local' });
 
 export async function POST(request) {
   console.log('API route hit: POST /api/send-pdfs');
