@@ -20,12 +20,19 @@ export async function POST(request) {
     const transporter = nodemailer.createTransport({
       host: process.env.EMAIL_HOST,
       port: parseInt(process.env.EMAIL_PORT),
-      secure: false, // Use TLS
+      secure: process.env.EMAIL_PORT === '465', // Use TLS for port 587, SSL for 465
       auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS
+      },
+      tls: {
+        rejectUnauthorized: false // Only use this for testing, remove in production
       }
     });
+
+    // Verify SMTP connection
+    await transporter.verify();
+    console.log('SMTP connection verified');
 
     // Send emails
     for (let i = 0; i < pdfs.length; i++) {
