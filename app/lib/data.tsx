@@ -1,8 +1,8 @@
 import * as XLSX from 'xlsx';
 
 const EXCEL_FILES = {
-  'info-manager-Beatriz': 'https://storage.googleapis.com/facturas_bea/locales-Beatriz.xlsx',
-  'info-manager-Compartidas': 'https://storage.googleapis.com/facturas_bea/locales-Comp.xlsx',
+  'info-manager-Beatriz': 'https://storage.googleapis.com/facturas_beaa/locales-Beatriz.xlsx',
+  'info-manager-Compartidas': 'https://storage.googleapis.com/facturas_beaa/locales-Comp.xlsx',
 };
 
 export async function getExcelData(page: string) {

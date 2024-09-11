@@ -1,6 +1,6 @@
 import * as XLSX from 'xlsx';
 
-const EXCEL_FILE_URL = 'https://storage.googleapis.com/facturas_bea/localesexp.xlsx';
+const EXCEL_FILE_URL = 'https://storage.googleapis.com/facturas_beaa/locales-Gastos.xlsx';
 
 export async function getExcelDataGastos() {
   try {
