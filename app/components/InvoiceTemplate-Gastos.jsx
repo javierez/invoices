@@ -81,7 +81,7 @@ const InvoiceTemplateGastos = ({ data, additionalExpenses }) => (
             <Text style={styles.tableCell}>TOTAL</Text>
           </View>
           <View style={[styles.tableCol, styles.halfWidth]}>
-            <Text style={styles.tableCellTitle}>EUROS</Text>
+            <Text style={styles.tableCellTitle}>Cantidad</Text>
             <Text style={styles.tableCell}>{formatCurrency(data.euros)}</Text>
             <Text style={styles.tableCell}>{formatCurrency(additionalExpenses.light)}</Text>
             <Text style={styles.tableCell}>{formatCurrency(additionalExpenses.trash)}</Text>
@@ -95,7 +95,7 @@ const InvoiceTemplateGastos = ({ data, additionalExpenses }) => (
             <Text style={styles.tableCell}>IVA 21%</Text>
           </View>
           <View style={[styles.tableCol, styles.halfWidth]}>
-            <Text style={styles.tableCellTitle}>EUROS</Text>
+            <Text style={styles.tableCellTitle}>Cantidad</Text>
             <Text style={styles.tableCell}>{formatCurrency((data.euros + additionalExpenses.light + additionalExpenses.trash) * 0.19)}</Text>
             <Text style={styles.tableCell}>{formatCurrency((data.euros + additionalExpenses.light + additionalExpenses.trash) * 0.21)}</Text>
           </View>
@@ -107,21 +107,21 @@ const InvoiceTemplateGastos = ({ data, additionalExpenses }) => (
         </View>
         <View style={styles.tableRow}>
           <View style={[styles.tableCol, styles.thirdWidth]}>
-            <Text style={styles.tableCellTitle}>Arrendatario:</Text>
+            <Text style={styles.tableCellTitle}>ARRENDATARIO:</Text>
             <Text style={styles.tableCell}>{data.name_arrendatario}</Text>
             <Text style={styles.tableCell}>{data.short_name}</Text>
             <Text style={styles.tableCell}>N.I.F. O</Text>
             <Text style={styles.tableCell}>D.N.I. {data.nif}</Text>
           </View>
           <View style={[styles.tableCol, styles.thirdWidth]}>
-            <Text style={styles.tableCellTitle}>Propietario:</Text>
+            <Text style={styles.tableCellTitle}>PROPIETARIO:</Text>
             <Text style={styles.tableCell}>Mª JESUS Y BEATRIZ GARCÍA CB</Text>
             <Text style={styles.tableCell}>C/ LOPE DE VEGA Nº 6</Text>
             <Text style={styles.tableCell}>24002 LEON</Text>
             <Text style={styles.tableCell}>C.I.F. E24550741</Text>
           </View>
           <View style={[styles.tableCol, styles.thirdWidth]}>
-            <Text style={styles.tableCellTitle}>Recibí:</Text>
+            <Text style={styles.tableCellTitle}>RECIBÍ:</Text>
           </View>
         </View>
       </View>

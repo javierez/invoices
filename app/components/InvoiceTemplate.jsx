@@ -68,7 +68,7 @@ const InvoiceTemplate = ({ data }) => (
             <Text style={styles.tableCell}>RENTA BASE</Text>
           </View>
           <View style={[styles.tableCol, styles.halfWidth]}>
-            <Text style={styles.tableCellTitle}>EUROS</Text>
+            <Text style={styles.tableCellTitle}>Cantidad</Text>
             <Text style={styles.tableCell}>{formatCurrency(data.euros)}</Text>
           </View>
         </View>
@@ -79,7 +79,7 @@ const InvoiceTemplate = ({ data }) => (
             <Text style={styles.tableCell}>IVA 21%</Text>
           </View>
           <View style={[styles.tableCol, styles.halfWidth]}>
-            <Text style={styles.tableCellTitle}>EUROS</Text>
+            <Text style={styles.tableCellTitle}>Cantidad</Text>
             <Text style={styles.tableCell}>{formatCurrency(data.irpf)}</Text>
             <Text style={styles.tableCell}>{formatCurrency(data.iva)}</Text>
           </View>
@@ -91,14 +91,14 @@ const InvoiceTemplate = ({ data }) => (
         </View>
         <View style={styles.tableRow}>
           <View style={[styles.tableCol, styles.thirdWidth]}>
-            <Text style={styles.tableCellTitle}>Arrendatario:</Text>
+            <Text style={styles.tableCellTitle}>ARRENDATARIO:</Text>
             <Text style={styles.tableCell}>{data.name_arrendatario}</Text>
             <Text style={styles.tableCell}>{data.short_name}</Text>
             <Text style={styles.tableCell}>N.I.F. O</Text>
             <Text style={styles.tableCell}>D.N.I. {data.nif}</Text>
           </View>
           <View style={[styles.tableCol, styles.thirdWidth]}>
-            <Text style={styles.tableCellTitle}>Propietario:</Text>
+            <Text style={styles.tableCellTitle}>PROPIETARIO:</Text>
             <Text style={styles.tableCell}>Beatriz García Fernández</Text>
             <Text style={styles.tableCell}>C/Las Fuentes Nº 1 4º G</Text>
             <Text style={styles.tableCell}>León</Text>
@@ -106,7 +106,7 @@ const InvoiceTemplate = ({ data }) => (
             <Text style={styles.tableCell}>D.N.I. 9763953Q</Text>
           </View>
           <View style={[styles.tableCol, styles.thirdWidth]}>
-            <Text style={styles.tableCellTitle}>Recibí:</Text>
+            <Text style={styles.tableCellTitle}>RECIBÍ:</Text>
           </View>
         </View>
       </View>
