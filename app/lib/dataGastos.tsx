@@ -5,7 +5,11 @@ const EXCEL_FILE_URL = 'https://storage.googleapis.com/facturas_beaa/locales-Gas
 export async function getExcelDataGastos() {
   try {
     console.log(`Fetching Excel file from: ${EXCEL_FILE_URL}`);
-    const response = await fetch(EXCEL_FILE_URL);
+    const response = await fetch(EXCEL_FILE_URL, {
+      headers: {
+        'Origin': 'https://invoices-lovat.vercel.app'
+      }
+    });
     
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
