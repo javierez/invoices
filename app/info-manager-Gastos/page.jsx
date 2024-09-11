@@ -47,7 +47,7 @@ export default function InfoManager() {
   };
 
   return (
-    <div className="flex min-h-screen bg-cream text-brown">
+    <div className="flex min-h-screen bg-beige text-brown">
       <main className="flex-grow p-8">
         <h1 className="text-6xl font-bold mb-16">Facturas Automáticas</h1>
         <p className="text-2xl mb-4 font-bold">Facturas con Gastos</p>

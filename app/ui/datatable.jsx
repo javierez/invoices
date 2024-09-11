@@ -22,10 +22,10 @@ const DataTable = ({ data }) => {
               <td className="py-4 px-6">{row.short_name}</td>
               <td className="py-4 px-6">{row.name_arrendatario}</td>
               <td className="py-4 px-6">{row.nif}</td>
-              <td className="py-4 px-6">{row.euros}</td>
-              <td className="py-4 px-6">{row.irpf}</td>
-              <td className="py-4 px-6">{row.iva}</td>
-              <td className="py-4 px-6">{row.total}</td>
+              <td className="py-4 px-6">{row.euros.toLocaleString('es-ES', { style: 'currency', currency: 'EUR' })}</td>
+              <td className="py-4 px-6">{row.irpf.toLocaleString('es-ES', { style: 'currency', currency: 'EUR' })}</td>
+              <td className="py-4 px-6">{row.iva.toLocaleString('es-ES', { style: 'currency', currency: 'EUR' })}</td>
+              <td className="py-4 px-6">{row.total.toLocaleString('es-ES', { style: 'currency', currency: 'EUR' })}</td>
               <td className="py-4 px-6">{row.mail}</td>
             </tr>
           ))}
