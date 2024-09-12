@@ -1,8 +1,28 @@
+'use client'
+
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import Image from "next/image";
 import Link from "next/link";
 import Button from './ui/button';
 
 export default function Home() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const router = useRouter();
+
+  useEffect(() => {
+    const auth = localStorage.getItem('isAuthenticated');
+    if (!auth) {
+      router.push('/login');
+    } else {
+      setIsAuthenticated(true);
+    }
+  }, [router]);
+
+  if (!isAuthenticated) {
+    return null;
+  }
+
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-beige text-brown">
       <main className="text-center flex flex-col items-center">
