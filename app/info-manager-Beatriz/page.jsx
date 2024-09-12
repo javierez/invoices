@@ -1,13 +1,41 @@
-import React from "react";
+'use client'
+
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { getExcelData } from "../lib/data";
-import DataTable from "../ui/datatable";  // Changed from DataTable to datatable
+import DataTable from "../ui/datatable";
 import Link from "next/link";
 import Button from "../ui/button";
 import { PDFGenerator } from "../ui/PDFGeneratorButton";
 import { EmailSender } from "../ui/EmailSenderButton";
 
-export default async function InfoManager() {
-  const excelData = await getExcelData('info-manager-Beatriz');
+export default function InfoManager() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [excelData, setExcelData] = useState([]);
+  const router = useRouter();
+
+  useEffect(() => {
+    const auth = localStorage.getItem('isAuthenticated');
+    if (!auth) {
+      router.push('/login');
+    } else {
+      setIsAuthenticated(true);
+      fetchData();
+    }
+  }, [router]);
+
+  const fetchData = async () => {
+    try {
+      const data = await getExcelData('info-manager-Beatriz');
+      setExcelData(data);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+
+  if (!isAuthenticated) {
+    return null;
+  }
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-beige text-brown">

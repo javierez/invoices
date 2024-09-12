@@ -1,37 +1,50 @@
 'use client'
 
-import React, { useState, useEffect } from "react";
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { getExcelDataGastos } from "../lib/dataGastos";
 import DataTable from "../ui/datatable";
 import Link from "next/link";
 import Button from "../ui/button";
 import { PDFGeneratorButtonGastos } from "../ui/PDFGeneratorButtonGastos";
-import SideMenu from "../ui/sidemenu";
 import { EmailSenderGastos } from "../ui/EmailSenderButtonGastos";
+import SideMenu from "../ui/sidemenu";
 
 export default function InfoManager() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [excelData, setExcelData] = useState([]);
   const [additionalExpenses, setAdditionalExpenses] = useState({});
   const [acceptedExpenses, setAcceptedExpenses] = useState({});
+  const router = useRouter();
 
   useEffect(() => {
-    async function fetchData() {
-      try {
-        const data = await getExcelDataGastos();
-        setExcelData(data);
-        // Initialize additionalExpenses state
-        const initialExpenses = data.reduce((acc, row) => {
-          acc[row.nif] = { light: '', trash: '' };
-          return acc;
-        }, {});
-        setAdditionalExpenses(initialExpenses);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-        // Handle the error appropriately
-      }
+    const auth = localStorage.getItem('isAuthenticated');
+    if (!auth) {
+      router.push('/login');
+    } else {
+      setIsAuthenticated(true);
+      fetchData();
     }
-    fetchData();
-  }, []);
+  }, [router]);
+
+  const fetchData = async () => {
+    try {
+      const data = await getExcelDataGastos();
+      setExcelData(data);
+      // Initialize additionalExpenses state
+      const initialExpenses = data.reduce((acc, row) => {
+        acc[row.nif] = { light: '', trash: '' };
+        return acc;
+      }, {});
+      setAdditionalExpenses(initialExpenses);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+
+  if (!isAuthenticated) {
+    return null;
+  }
 
   const handleExpenseChange = (nif, type, value) => {
     setAdditionalExpenses(prev => ({
