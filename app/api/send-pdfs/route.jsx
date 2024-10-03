@@ -52,7 +52,7 @@ export async function POST(request) {
 
       await transporter.sendMail({
         from: `"Beatriz García" <${process.env.EMAIL_USER}>`,
-        to: "javierez1998@gmail.com" ,//rowData.mail,
+        to: rowData.mail,
         subject: `Factura Mes ${new Date().toLocaleString('es-ES', { month: 'long' })}`,
         text: `Buenos días,
 
