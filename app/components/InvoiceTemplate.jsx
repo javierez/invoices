@@ -29,89 +29,101 @@ const formatCurrency = (value) => {
   return `${value.toFixed(2)}€`;
 };
 
-const InvoiceTemplate = ({ data }) => (
-  <Document>
-    <Page size="A4" style={styles.page}>
-      <View style={styles.table}>
-        <View style={styles.tableRow}>
-          <View style={[styles.tableCol, styles.thirdWidth]}>
-            <Text style={styles.tableCellTitle}>Recibo Nº</Text>
-            <Text style={styles.tableCell}>{new Date().getMonth() + 1}</Text>
+const InvoiceTemplate = ({ data, activePage }) => {
+  console.log('InvoiceTemplate - activePage:', activePage);
+
+  const propietario = activePage === 'info-manager-Beatriz' 
+    ? 'Beatriz García Fernández'
+    : 'María Jesus y Beatriz García CB';
+
+  console.log('InvoiceTemplate - propietario:', propietario);
+
+  return (
+    <Document>
+      <Page size="A4" style={styles.page}>
+        <View style={styles.table}>
+          <View style={styles.tableRow}>
+            <View style={[styles.tableCol, styles.thirdWidth]}>
+              <Text style={styles.tableCellTitle}>Recibo Nº</Text>
+              <Text style={styles.tableCell}>{new Date().getMonth() + 1}</Text>
+            </View>
+            <View style={[styles.tableCol, styles.thirdWidth]}>
+              <Text style={styles.tableCellTitle}>Localidad de Expedición</Text>
+              <Text style={styles.tableCell}>León</Text>
+            </View>
+            <View style={[styles.tableCol, styles.thirdWidth]}>
+              <Text style={styles.tableCellTitle}>Total</Text>
+              <Text style={styles.tableCell}>{formatCurrency(data.total)}</Text>
+            </View>
           </View>
-          <View style={[styles.tableCol, styles.thirdWidth]}>
-            <Text style={styles.tableCellTitle}>Localidad de Expedición</Text>
-            <Text style={styles.tableCell}>León</Text>
+          <View style={styles.tableRow}>
+            <View style={[styles.tableCol, styles.halfWidth]}>
+              <Text style={styles.tableCellTitle}>Expedición</Text>
+              <Text style={styles.tableCell}>{getCurrentDate()}</Text>
+            </View>
+            <View style={[styles.tableCol, styles.halfWidth]}>
+              <Text style={styles.tableCellTitle}>Fecha de Vencimiento</Text>
+              <Text style={styles.tableCell}>A la vista</Text>
+            </View>
           </View>
-          <View style={[styles.tableCol, styles.thirdWidth]}>
-            <Text style={styles.tableCellTitle}>Total</Text>
-            <Text style={styles.tableCell}>{formatCurrency(data.total)}</Text>
+          <View style={styles.tableRow}>
+            <View style={[styles.tableCol, styles.fullWidth]}>
+              <Text style={styles.tableCellTitle}>ARRENDAMIENTO FINCA {data.short_name}</Text>
+            </View>
+          </View>
+          <View style={styles.tableRow}>
+            <View style={[styles.tableCol, styles.halfWidth]}>
+              <Text style={styles.tableCellTitle}>Conceptos</Text>
+              <Text style={styles.tableCell}>RENTA BASE</Text>
+            </View>
+            <View style={[styles.tableCol, styles.halfWidth]}>
+              <Text style={styles.tableCellTitle}>Cantidad</Text>
+              <Text style={styles.tableCell}>{formatCurrency(data.euros)}</Text>
+            </View>
+          </View>
+          <View style={styles.tableRow}>
+            <View style={[styles.tableCol, styles.halfWidth]}>
+              <Text style={styles.tableCellTitle}>Conceptos</Text>
+              <Text style={styles.tableCell}>RET. A CTA. IRPF 19,00%</Text>
+              <Text style={styles.tableCell}>IVA 21%</Text>
+            </View>
+            <View style={[styles.tableCol, styles.halfWidth]}>
+              <Text style={styles.tableCellTitle}>Cantidad</Text>
+              <Text style={styles.tableCell}>{formatCurrency(data.irpf)}</Text>
+              <Text style={styles.tableCell}>{formatCurrency(data.iva)}</Text>
+            </View>
+          </View>
+          <View style={styles.tableRow}>
+            <View style={[styles.tableCol, styles.fullWidth]}>
+              <Text style={styles.tableCellTitle}>CUENTA DE CARGO</Text>
+            </View>
+          </View>
+          <View style={styles.tableRow}>
+            <View style={[styles.tableCol, styles.thirdWidth]}>
+              <Text style={styles.tableCellTitle}>ARRENDATARIO:</Text>
+              <Text style={styles.tableCell}>{data.name_arrendatario}</Text>
+              <Text style={styles.tableCell}>{data.short_name}</Text>
+              <Text style={styles.tableCell}>N.I.F. O</Text>
+              <Text style={styles.tableCell}>D.N.I. {data.nif}</Text>
+            </View>
+            <View style={[styles.tableCol, styles.thirdWidth]}>
+              <Text style={styles.tableCellTitle}>PROPIETARIO:</Text>
+              <Text style={styles.tableCell}>
+                {propietario}
+              </Text>
+              <Text style={styles.tableCell}>C/Las Fuentes Nº 1 4º G</Text>
+              <Text style={styles.tableCell}>León</Text>
+              <Text style={styles.tableCell}>N.I.F. O</Text>
+              <Text style={styles.tableCell}>D.N.I. 9763953Q</Text>
+            </View>
+            <View style={[styles.tableCol, styles.thirdWidth]}>
+              <Text style={styles.tableCellTitle}>RECIBÍ:</Text>
+            </View>
           </View>
         </View>
-        <View style={styles.tableRow}>
-          <View style={[styles.tableCol, styles.halfWidth]}>
-            <Text style={styles.tableCellTitle}>Expedición</Text>
-            <Text style={styles.tableCell}>{getCurrentDate()}</Text>
-          </View>
-          <View style={[styles.tableCol, styles.halfWidth]}>
-            <Text style={styles.tableCellTitle}>Fecha de Vencimiento</Text>
-            <Text style={styles.tableCell}>A la vista</Text>
-          </View>
-        </View>
-        <View style={styles.tableRow}>
-          <View style={[styles.tableCol, styles.fullWidth]}>
-            <Text style={styles.tableCellTitle}>ARRENDAMIENTO FINCA {data.short_name}</Text>
-          </View>
-        </View>
-        <View style={styles.tableRow}>
-          <View style={[styles.tableCol, styles.halfWidth]}>
-            <Text style={styles.tableCellTitle}>Conceptos</Text>
-            <Text style={styles.tableCell}>RENTA BASE</Text>
-          </View>
-          <View style={[styles.tableCol, styles.halfWidth]}>
-            <Text style={styles.tableCellTitle}>Cantidad</Text>
-            <Text style={styles.tableCell}>{formatCurrency(data.euros)}</Text>
-          </View>
-        </View>
-        <View style={styles.tableRow}>
-          <View style={[styles.tableCol, styles.halfWidth]}>
-            <Text style={styles.tableCellTitle}>Conceptos</Text>
-            <Text style={styles.tableCell}>RET. A CTA. IRPF 19,00%</Text>
-            <Text style={styles.tableCell}>IVA 21%</Text>
-          </View>
-          <View style={[styles.tableCol, styles.halfWidth]}>
-            <Text style={styles.tableCellTitle}>Cantidad</Text>
-            <Text style={styles.tableCell}>{formatCurrency(data.irpf)}</Text>
-            <Text style={styles.tableCell}>{formatCurrency(data.iva)}</Text>
-          </View>
-        </View>
-        <View style={styles.tableRow}>
-          <View style={[styles.tableCol, styles.fullWidth]}>
-            <Text style={styles.tableCellTitle}>CUENTA DE CARGO</Text>
-          </View>
-        </View>
-        <View style={styles.tableRow}>
-          <View style={[styles.tableCol, styles.thirdWidth]}>
-            <Text style={styles.tableCellTitle}>ARRENDATARIO:</Text>
-            <Text style={styles.tableCell}>{data.name_arrendatario}</Text>
-            <Text style={styles.tableCell}>{data.short_name}</Text>
-            <Text style={styles.tableCell}>N.I.F. O</Text>
-            <Text style={styles.tableCell}>D.N.I. {data.nif}</Text>
-          </View>
-          <View style={[styles.tableCol, styles.thirdWidth]}>
-            <Text style={styles.tableCellTitle}>PROPIETARIO:</Text>
-            <Text style={styles.tableCell}>Beatriz García Fernández</Text>
-            <Text style={styles.tableCell}>C/Las Fuentes Nº 1 4º G</Text>
-            <Text style={styles.tableCell}>León</Text>
-            <Text style={styles.tableCell}>N.I.F. O</Text>
-            <Text style={styles.tableCell}>D.N.I. 9763953Q</Text>
-          </View>
-          <View style={[styles.tableCol, styles.thirdWidth]}>
-            <Text style={styles.tableCellTitle}>RECIBÍ:</Text>
-          </View>
-        </View>
-      </View>
-    </Page>
-  </Document>
-);
+      </Page>
+    </Document>
+  );
+};
 
 export default InvoiceTemplate;

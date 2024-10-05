@@ -10,7 +10,7 @@ export default function Login() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (password === process.env.NEXT_PUBLIC_APP_PW) {
+    if (password === "bea123") { //process.env.NEXT_PUBLIC_APP_PW) {
       localStorage.setItem('isAuthenticated', 'true');
       router.push('/');
     } else {

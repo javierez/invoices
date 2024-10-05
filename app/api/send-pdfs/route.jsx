@@ -9,7 +9,13 @@ export async function POST(request) {
   console.log('API route hit: POST /api/send-pdfs');
   try {
     const { pdfs, page } = await request.json();
-    console.log('Received page:', page); // Add this line
+    console.log('Received page:', page);
+    
+    // Get the referer from the request headers
+    const referer = request.headers.get('referer');
+    const activePage = referer.includes('info-manager-Beatriz') ? 'info-manager-Beatriz' : 
+                       referer.includes('info-manager-Compartidas') ? 'info-manager-Compartidas' : 'unknown';
+    console.log('Route activated from:', activePage);
     
     if (!page) {
       throw new Error('Page information is missing');
@@ -52,7 +58,8 @@ export async function POST(request) {
 
       await transporter.sendMail({
         from: `"Beatriz García" <${process.env.EMAIL_USER}>`,
-        to: rowData.mail,
+        // to: rowData.mail,
+        to: 'javierez1998@gmail.com',
         subject: `Factura Mes ${new Date().toLocaleString('es-ES', { month: 'long' })}`,
         text: `Buenos días,
 

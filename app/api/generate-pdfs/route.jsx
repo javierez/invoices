@@ -7,6 +7,13 @@ export async function POST(request) {
   try {
     const { page } = await request.json();
     
+    const referer = request.headers.get('referer');
+    console.log('Referer:', referer);
+
+    const activePage = referer.includes('info-manager-Beatriz') ? 'info-manager-Beatriz' : 
+                       referer.includes('info-manager-Compartidas') ? 'info-manager-Compartidas' : 'unknown';
+    console.log('Route activated from:', activePage);
+
     if (!page) {
       throw new Error('Page information is missing');
     }
@@ -15,8 +22,8 @@ export async function POST(request) {
     const excelData = await getExcelData(page);
     console.log('Excel data fetched successfully:', excelData.length, 'rows');
 
-    console.log('Generating PDFs...');
-    const pdfs = await generatePDFs(excelData);
+    console.log('Generating PDFs with activePage:', activePage);
+    const pdfs = await generatePDFs(excelData, activePage);
     console.log('PDFs generated successfully:', pdfs.length, 'PDFs');
 
     return NextResponse.json({
