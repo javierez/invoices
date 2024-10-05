@@ -1,6 +1,8 @@
 import React from 'react';
 
 const DataTable = ({ data }) => {
+  console.log('DataTable received data:', data);
+
   return (
     <div className="bg-offwhite rounded-lg shadow-lg overflow-x-auto w-full max-w-[1600px] mx-auto">
       <table className="w-full text-left table-auto">
@@ -14,6 +16,7 @@ const DataTable = ({ data }) => {
             <th className="py-4 px-6 min-w-[150px]">IVA</th>
             <th className="py-4 px-6 min-w-[150px]">Total</th>
             <th className="py-4 px-6 min-w-[250px]">Email</th>
+            <th className="py-4 px-6 min-w-[280px]">Referencia Catastral</th>
           </tr>
         </thead>
         <tbody className="text-brown">
@@ -27,6 +30,7 @@ const DataTable = ({ data }) => {
               <td className="py-4 px-6">{row.iva.toLocaleString('es-ES', { style: 'currency', currency: 'EUR' })}</td>
               <td className="py-4 px-6">{row.total.toLocaleString('es-ES', { style: 'currency', currency: 'EUR' })}</td>
               <td className="py-4 px-6">{row.mail}</td>
+              <td className="py-4 px-6">{row.ref_catastral}</td>
             </tr>
           ))}
         </tbody>

@@ -45,7 +45,9 @@ const InvoiceTemplate = ({ data, activePage }) => {
           <View style={styles.tableRow}>
             <View style={[styles.tableCol, styles.thirdWidth]}>
               <Text style={styles.tableCellTitle}>Recibo Nº</Text>
-              <Text style={styles.tableCell}>{new Date().getMonth() + 1}</Text>
+              <Text style={styles.tableCell}>
+                {`${new Date().getFullYear()}${(new Date().getMonth() + 1).toString().padStart(2, '0')}${data.name_arrendatario.split(' ').map(word => word[0]).join('')}${data.ref_catastral}`}
+              </Text>
             </View>
             <View style={[styles.tableCol, styles.thirdWidth]}>
               <Text style={styles.tableCellTitle}>Localidad de Expedición</Text>
