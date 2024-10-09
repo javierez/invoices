@@ -40,6 +40,10 @@ const InvoiceTemplate = ({ data, activePage }) => {
     ? 'Beatriz García Fernández'
     : 'María Jesus y Beatriz García CB';
 
+  const identificador = activePage === 'info-manager-Beatriz'
+    ? 'N.I.F. 9763953Q'
+    : 'C.I.F. E24550741';
+
   console.log('InvoiceTemplate - propietario:', propietario);
 
   return (
@@ -120,8 +124,7 @@ const InvoiceTemplate = ({ data, activePage }) => {
               </Text>
               <Text style={styles.tableCell}>C/Las Fuentes Nº 1 4º G</Text>
               <Text style={styles.tableCell}>León</Text>
-              <Text style={styles.tableCell}>N.I.F. O</Text>
-              <Text style={styles.tableCell}>D.N.I. 9763953Q</Text>
+              <Text style={styles.tableCell}>{identificador}</Text>
             </View>
             <View style={[styles.tableCol, styles.thirdWidth]}>
               <Text style={styles.tableCellTitle}>RECIBÍ:</Text>
