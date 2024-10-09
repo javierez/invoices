@@ -75,8 +75,10 @@ const InvoiceTemplateGastos = ({ data, additionalExpenses }) => (
         </View>
         <View style={styles.tableRow}>
           <View style={[styles.tableCol, styles.fullWidth]}>
-            <Text style={styles.tableCellTitle}>ARRENDAMIENTO FINCA {data.short_name}</Text>
-            <Text style={[styles.tableCell, { fontSize: 8, textAlign: 'center' }]}>Ref. Catastral: {data.ref_catastral || 'N/A'}</Text>
+            <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'baseline' }}>
+              <Text style={styles.tableCellTitle}>ARRENDAMIENTO FINCA {data.short_name}</Text>
+              <Text style={[styles.tableCell, { fontSize: 8 }]}>Ref. Catastral: {data.ref_catastral || 'N/A'}</Text>
+            </View>
           </View>
         </View>
         <View style={styles.tableRow}>
