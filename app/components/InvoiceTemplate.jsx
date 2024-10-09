@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
   twoThirdsWidth: { width: '66.67%' },
   smallText: {
     fontSize: 8,
-    marginTop: 2, // Adds a small gap between the title and the ref_catastral
+    marginTop: 3, // Adds a small gap between the title and the ref_catastral
   },
 });
 
@@ -75,7 +75,7 @@ const InvoiceTemplate = ({ data, activePage }) => {
           <View style={styles.tableRow}>
             <View style={[styles.tableCol, styles.fullWidth]}>
               <Text style={styles.tableCellTitle}>ARRENDAMIENTO FINCA {data.short_name}</Text>
-              <Text style={[styles.tableCell, styles.smallText]}>Ref. Catastral: {data.ref_catastral || 'N/A'}</Text>
+              <Text style={[styles.tableCell, styles.smallText, { textAlign: 'center' }]}>Ref. Catastral: {data.ref_catastral || 'N/A'}</Text>
             </View>
           </View>
           <View style={styles.tableRow}>

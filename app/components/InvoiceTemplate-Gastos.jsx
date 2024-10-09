@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
   twoThirdsWidth: { width: '66.67%' },
   smallText: {
     fontSize: 8,
-    marginTop: 2, // Adds a small gap between the title and the ref_catastral
+    marginTop: 3, // Adds a small gap between the title and the ref_catastral
   },
 });
 
@@ -76,7 +76,7 @@ const InvoiceTemplateGastos = ({ data, additionalExpenses }) => (
         <View style={styles.tableRow}>
           <View style={[styles.tableCol, styles.fullWidth]}>
             <Text style={styles.tableCellTitle}>ARRENDAMIENTO FINCA {data.short_name}</Text>
-            <Text style={[styles.tableCell, { fontSize: 8 }]}>Ref. Catastral: {data.ref_catastral || 'N/A'}</Text>
+            <Text style={[styles.tableCell, { fontSize: 8, textAlign: 'center' }]}>Ref. Catastral: {data.ref_catastral || 'N/A'}</Text>
           </View>
         </View>
         <View style={styles.tableRow}>
