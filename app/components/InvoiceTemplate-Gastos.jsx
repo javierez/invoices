@@ -45,7 +45,7 @@ const InvoiceTemplateGastos = ({ data, additionalExpenses }) => (
           <View style={[styles.tableCol, styles.thirdWidth]}>
             <Text style={styles.tableCellTitle}>Recibo Nº</Text>
             <Text style={styles.tableCell}>
-              {`${new Date().getFullYear()}${(new Date().getMonth() + 1).toString().padStart(2, '0')}${data.name_arrendatario.split(' ').map(word => word[0]).join('')}`}
+              {`${new Date().getFullYear()}${(new Date().getMonth() + 1).toString().padStart(2, '0')}${data.sc}`}
             </Text>
           </View>
           <View style={[styles.tableCol, styles.thirdWidth]}>
