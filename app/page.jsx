@@ -24,7 +24,7 @@ export default function Home() {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-beige text-brown">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-cream text-brown">
       <main className="text-center flex flex-col items-center">
         <h1 className="text-6xl font-bold mb-8">Facturas Automáticas</h1>
         <p className="text-xl mb-12">Bienvenida a la aplicación para enviar facturas de forma automática</p>

@@ -38,7 +38,7 @@ export default function InfoManager() {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-beige text-brown">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-cream text-brown">
       <main className="text-center w-full max-w-6xl">
         <h1 className="text-6xl font-bold mb-16">Facturas Automáticas</h1>
         <p className="text-2xl mb-4 font-bold">Facturas Beatriz</p>
