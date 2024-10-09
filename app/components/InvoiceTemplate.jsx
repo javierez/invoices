@@ -13,6 +13,10 @@ const styles = StyleSheet.create({
   halfWidth: { width: '50%' },
   thirdWidth: { width: '33.33%' },
   twoThirdsWidth: { width: '66.67%' },
+  smallText: {
+    fontSize: 8,
+    marginTop: 2, // Adds a small gap between the title and the ref_catastral
+  },
 });
 
 const getCurrentMonth = () => {
@@ -46,7 +50,7 @@ const InvoiceTemplate = ({ data, activePage }) => {
             <View style={[styles.tableCol, styles.thirdWidth]}>
               <Text style={styles.tableCellTitle}>Recibo Nº</Text>
               <Text style={styles.tableCell}>
-                {`${new Date().getFullYear()}${(new Date().getMonth() + 1).toString().padStart(2, '0')}${data.name_arrendatario.split(' ').map(word => word[0]).join('')}${data.ref_catastral}`}
+                {`${new Date().getFullYear()}${(new Date().getMonth() + 1).toString().padStart(2, '0')}${data.name_arrendatario.split(' ').map(word => word[0]).join('')}`}
               </Text>
             </View>
             <View style={[styles.tableCol, styles.thirdWidth]}>
@@ -71,6 +75,7 @@ const InvoiceTemplate = ({ data, activePage }) => {
           <View style={styles.tableRow}>
             <View style={[styles.tableCol, styles.fullWidth]}>
               <Text style={styles.tableCellTitle}>ARRENDAMIENTO FINCA {data.short_name}</Text>
+              <Text style={[styles.tableCell, styles.smallText]}>Ref. Catastral: {data.ref_catastral || 'N/A'}</Text>
             </View>
           </View>
           <View style={styles.tableRow}>
