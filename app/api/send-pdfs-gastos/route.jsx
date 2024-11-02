@@ -34,8 +34,8 @@ export async function POST(request) {
 
       await transporter.sendMail({
         from: `"Beatriz García" <${process.env.EMAIL_USER}>`,
-        // to: rowData.mail,
-        to: 'javierez1998@gmail.com',
+        to: rowData.mail,
+        //to: 'javierez1998@gmail.com',
         subject: `Factura Mes ${new Date().toLocaleString('es-ES', { month: 'long' })} (con gastos)`,
         text: `Buenos días,
 
