@@ -19,8 +19,8 @@ export async function generatePDFs(data, activePage) {
       if (!row.name_arrendatario || row.name_arrendatario.trim() === '') {
         missingFields.push('name');
       }
-      if (!row.dni || row.dni.trim() === '') {
-        missingFields.push('dni');
+      if (!row.nif || row.nif.trim() === '') {
+        missingFields.push('nif');
       }
       
       if (missingFields.length > 0) {

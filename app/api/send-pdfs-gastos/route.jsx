@@ -41,8 +41,8 @@ export async function POST(request) {
       if (!rowData.name_arrendatario || rowData.name_arrendatario.trim() === '') {
         missingFields.push('name');
       }
-      if (!rowData.dni || rowData.dni.trim() === '') {
-        missingFields.push('dni');
+      if (!rowData.nif || rowData.nif.trim() === '') {
+        missingFields.push('nif');
       }
 
       if (missingFields.length > 0) {
