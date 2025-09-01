@@ -58,7 +58,7 @@ const InvoiceTemplateGastos = ({ data, additionalExpenses }) => (
               {formatCurrency(
                 (data.euros + additionalExpenses.light + additionalExpenses.trash) +
                 ((data.euros + additionalExpenses.light + additionalExpenses.trash) * 0.21) -
-                ((data.euros + additionalExpenses.light + additionalExpenses.trash) * 0.19)
+                (data.irpf === 0 ? 0 : (data.euros + additionalExpenses.light + additionalExpenses.trash) * 0.19)
               )}
             </Text>
           </View>
@@ -103,7 +103,7 @@ const InvoiceTemplateGastos = ({ data, additionalExpenses }) => (
           </View>
           <View style={[styles.tableCol, styles.halfWidth]}>
             <Text style={styles.tableCellTitle}>Cantidad</Text>
-            <Text style={styles.tableCell}>{formatCurrency((data.euros + additionalExpenses.light + additionalExpenses.trash) * 0.19)}</Text>
+            <Text style={styles.tableCell}>{formatCurrency(data.irpf === 0 ? 0 : (data.euros + additionalExpenses.light + additionalExpenses.trash) * 0.19)}</Text>
             <Text style={styles.tableCell}>{formatCurrency((data.euros + additionalExpenses.light + additionalExpenses.trash) * 0.21)}</Text>
           </View>
         </View>

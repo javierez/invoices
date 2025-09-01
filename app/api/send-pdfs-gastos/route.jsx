@@ -28,9 +28,32 @@ export async function POST(request) {
     });
 
     // Send emails
+    const results = { sent: 0, skipped: [] };
     for (let i = 0; i < pdfs.length; i++) {
       const pdf = pdfs[i];
       const rowData = excelData[i];
+
+      // Validate required fields
+      const missingFields = [];
+      if (!rowData.mail || rowData.mail.trim() === '') {
+        missingFields.push('email');
+      }
+      if (!rowData.name_arrendatario || rowData.name_arrendatario.trim() === '') {
+        missingFields.push('name');
+      }
+      if (!rowData.dni || rowData.dni.trim() === '') {
+        missingFields.push('dni');
+      }
+
+      if (missingFields.length > 0) {
+        console.warn(`Skipping row ${i}: Missing ${missingFields.join(', ')} for property ${rowData.property || 'unknown'}`);
+        results.skipped.push({
+          index: i,
+          property: rowData.property || 'unknown',
+          reason: `Missing fields: ${missingFields.join(', ')}`
+        });
+        continue;
+      }
 
       await transporter.sendMail({
         from: `"Beatriz García" <${process.env.EMAIL_USER}>`,
@@ -50,9 +73,13 @@ Beatriz`,
           }
         ]
       });
+      results.sent++;
     }
 
-    return NextResponse.json({ message: 'Emails sent successfully' });
+    return NextResponse.json({ 
+      message: `Emails sent successfully: ${results.sent} sent, ${results.skipped.length} skipped`,
+      results: results 
+    });
   } catch (error) {
     console.error('Server error:', error);
     return NextResponse.json({ error: 'Internal server error', details: error.message }, { status: 500 });
